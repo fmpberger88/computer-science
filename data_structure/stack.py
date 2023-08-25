@@ -1,4 +1,6 @@
 from node import Node
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
 
 
 class Stack:
@@ -37,6 +39,24 @@ class Stack:
     def is_empty(self):
         return self.size == 0
 
+    def visualize(self):
+        fig, ax = plt.subplots(figsize=(5, 10))
+        current_item = self.top_item
+        position = 0
+
+        while current_item:
+            rect = patches.FancyBboxPatch((0.1, position - 0.4), 0.8, 0.8, boxstyle="round,pad=0.1", facecolor="#f5f5f5", edgecolor="black")
+            ax.add_patch(rect)
+            plt.text(0.5, position, current_item.get_value(), ha='center', va='center', fontsize=12, fontweight='bold')
+            position -= 1
+            current_item = current_item.get_next_node()
+
+        plt.xlim(0, 1)
+        plt.ylim(position, + 1)
+        plt.axis('off')
+        plt.title("Stack Visualization", fontsize=15)
+        plt.show()
+
 
 # Defining an empty pizza stack
 pizza_stack = Stack(6)
@@ -47,6 +67,8 @@ pizza_stack.push("pizza #3")
 pizza_stack.push("pizza #4")
 pizza_stack.push("pizza #5")
 pizza_stack.push("pizza #6")
+
+pizza_stack.visualize()
 
 # Uncomment the push() statement below:
 pizza_stack.push("pizza #7")
