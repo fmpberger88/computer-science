@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from distance_formula.euclidian_distance import euclidean_distance
+from distance_formula.euclidean_distance import euclidean_distance
 
 
 
